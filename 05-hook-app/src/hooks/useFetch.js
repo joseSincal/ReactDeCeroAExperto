@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
-export const useFetch = () => {
+const localCache = {};
+
+export const useFetch = (url) => {
     const [state, setState] = useState({
         data: null,
         isLoading: true,
@@ -10,17 +12,62 @@ export const useFetch = () => {
 
     useEffect(() => {
         getFetch();
-    }, []);
+    }, [url]);
+
+    const setLoadingState = () => {
+        setState({
+            data: null,
+            isLoading: true,
+            hasError: false,
+            error: null,
+        });
+    };
 
     const getFetch = async () => {
-        const resp = await fetch("https://pokeapi.co/api/v2/pokemon/1");
-        const data = await resp.json();
+        if (localCache[url]) {
+            console.log("Usando Cache");
+            setState({
+                data: localCache[url],
+                isLoading: false,
+                hasError: false,
+                error: null,
+            });
+            return;
+        }
 
-        console.log({ data });
+        setLoadingState();
+        const resp = await fetch(url);
+
+        //sleep
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+
+        if (!resp.ok) {
+            setState({
+                data: null,
+                isLoading: false,
+                hasError: true,
+                error: {
+                    status: resp.status,
+                    statusText: resp.statusText,
+                },
+            });
+            return;
+        }
+
+        const data = await resp.json();
+        setState({
+            data,
+            isLoading: false,
+            hasError: false,
+            error: null,
+        });
+
+        // Manejo del cache
+        localCache[url] = data;
     };
 
     return {
-        data: state.date,
+        data: state.data,
         isLoading: state.isLoading,
         hasError: state.hasError,
     };
