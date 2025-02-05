@@ -11,23 +11,27 @@ import { createRoot } from "react-dom/client";
 // import { Memorize } from "./06-memos/Memorize";
 // import { MemoHook } from "./06-memos/MemoHook";
 // import { CallbackHook } from "./06-memos/CallbackHook";
-import { Padre } from "./07-tarea-memo/Padre";
+// import { Padre } from "./07-tarea-memo/Padre";
+import { TodoApp } from "./08-useReducer/TodoApp";
 
 import "./index.css";
 
-createRoot(document.getElementById("root")).render(
-    <StrictMode>
-        {/* <HooksApp /> */}
-        {/* <CounterApp /> */}
-        {/* <CounterWithCustomHook /> */}
-        {/* <SimpleForm /> */}
-        {/* <FormWithCustomHook /> */}
-        {/* <MultipleCustomHooks /> */}
-        {/* <FocusScreen /> */}
-        {/* <Layout /> */}
-        {/* <Memorize /> */}
-        {/* <MemoHook /> */}
-        {/* <CallbackHook /> */}
-        <Padre />
-    </StrictMode>
-);
+createRoot(document.getElementById("root")).render(<TodoApp />);
+
+// createRoot(document.getElementById("root")).render(
+//     // <StrictMode>
+//         {/* <HooksApp /> */}
+//         {/* <CounterApp /> */}
+//         {/* <CounterWithCustomHook /> */}
+//         {/* <SimpleForm /> */}
+//         {/* <FormWithCustomHook /> */}
+//         {/* <MultipleCustomHooks /> */}
+//         {/* <FocusScreen /> */}
+//         {/* <Layout /> */}
+//         {/* <Memorize /> */}
+//         {/* <MemoHook /> */}
+//         {/* <CallbackHook /> */}
+//         {/* <Padre /> */}
+//         <TodoApp />
+//     // </StrictMode>
+// )
