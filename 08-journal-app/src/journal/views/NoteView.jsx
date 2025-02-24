@@ -6,6 +6,7 @@ export const NoteView = () => {
     return (
         <>
             <Grid2
+                className="animate__animated animate__fadeIn animate__faster"
                 container
                 direction="row"
                 justifyContent="space-between"
@@ -25,7 +26,10 @@ export const NoteView = () => {
                     </Button>
                 </Grid2>
             </Grid2>
-            <Grid2 container>
+            <Grid2
+                className="animate__animated animate__fadeIn animate__faster"
+                container
+            >
                 <TextField
                     type="text"
                     variant="filled"
