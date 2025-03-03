@@ -18,14 +18,16 @@ import {
     startLoginWithEmailPassword,
 } from "../../store/auth";
 
+const formData = {
+    email: "",
+    password: "",
+};
+
 export const LoginPage = () => {
     const { status, errorMessage } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
-    const { email, password, onInputChange } = useForm({
-        email: "",
-        password: "",
-    });
+    const { email, password, onInputChange } = useForm(formData);
 
     const isAuthenticating = useMemo(() => status === "checking", [status]);
 
@@ -42,7 +44,10 @@ export const LoginPage = () => {
 
     return (
         <AuthLayout title="Login">
-            <form onSubmit={onSubmit} className="animate__animated animate__fadeIn animate__faster">
+            <form
+                onSubmit={onSubmit}
+                className="animate__animated animate__fadeIn animate__faster"
+            >
                 <Grid2 container>
                     <Grid2 size={12} sx={{ mt: 2 }}>
                         <TextField
